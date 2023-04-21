@@ -168,8 +168,9 @@ class TiltCollectionView: UIView {
         }
     }
 
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesBegan(touches, with: event)
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
+
         guard let touch = touches.first else { return }
 
         let point = touch.location(in: self)

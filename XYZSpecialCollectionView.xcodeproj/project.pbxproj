@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B33F7C32B91CC2D0011167F /* AlignCollectionViewFollowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B33F7C22B91CC2D0011167F /* AlignCollectionViewFollowLayout.swift */; };
+		5B33F7C52B91CC7E0011167F /* AlignCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B33F7C42B91CC7E0011167F /* AlignCollectionViewController.swift */; };
 		5B5DA64829E8F820005A72D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5DA64729E8F820005A72D7 /* AppDelegate.swift */; };
 		5B5DA64C29E8F820005A72D7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5DA64B29E8F820005A72D7 /* ViewController.swift */; };
 		5B5DA64F29E8F820005A72D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B5DA64D29E8F820005A72D7 /* Main.storyboard */; };
@@ -19,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5B33F7C22B91CC2D0011167F /* AlignCollectionViewFollowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlignCollectionViewFollowLayout.swift; sourceTree = "<group>"; };
+		5B33F7C42B91CC7E0011167F /* AlignCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlignCollectionViewController.swift; sourceTree = "<group>"; };
 		5B5DA64429E8F820005A72D7 /* XYZSpecialCollectionView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XYZSpecialCollectionView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B5DA64729E8F820005A72D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5B5DA64B29E8F820005A72D7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -43,6 +47,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5B33F7C12B91CBF80011167F /* CollectionViewLayouts */ = {
+			isa = PBXGroup;
+			children = (
+				5B33F7C22B91CC2D0011167F /* AlignCollectionViewFollowLayout.swift */,
+			);
+			path = CollectionViewLayouts;
+			sourceTree = "<group>";
+		};
 		5B5DA63B29E8F820005A72D7 = {
 			isa = PBXGroup;
 			children = (
@@ -62,6 +74,7 @@
 		5B5DA64629E8F820005A72D7 /* XYZSpecialCollectionView */ = {
 			isa = PBXGroup;
 			children = (
+				5B33F7C12B91CBF80011167F /* CollectionViewLayouts */,
 				5B5DA65B29E8F85F005A72D7 /* CollectionViews */,
 				5B5DA66029E8FCFE005A72D7 /* Examples */,
 				5B5DA64729E8F820005A72D7 /* AppDelegate.swift */,
@@ -88,6 +101,7 @@
 			children = (
 				5B5DA66129E8FD51005A72D7 /* TiltCollectionViewViewController.swift */,
 				5B5DA66329E8FD5E005A72D7 /* MiddleExpandCollectionViewViewController.swift */,
+				5B33F7C42B91CC7E0011167F /* AlignCollectionViewController.swift */,
 			);
 			path = Examples;
 			sourceTree = "<group>";
@@ -166,6 +180,8 @@
 				5B5DA64C29E8F820005A72D7 /* ViewController.swift in Sources */,
 				5B5DA64829E8F820005A72D7 /* AppDelegate.swift in Sources */,
 				5B5DA66229E8FD51005A72D7 /* TiltCollectionViewViewController.swift in Sources */,
+				5B33F7C32B91CC2D0011167F /* AlignCollectionViewFollowLayout.swift in Sources */,
+				5B33F7C52B91CC7E0011167F /* AlignCollectionViewController.swift in Sources */,
 				5B5DA65F29E8F888005A72D7 /* TiltCollectionView.swift in Sources */,
 				5B5DA66429E8FD5E005A72D7 /* MiddleExpandCollectionViewViewController.swift in Sources */,
 				5B5DA65E29E8F888005A72D7 /* MiddleExpandCollectionView.swift in Sources */,

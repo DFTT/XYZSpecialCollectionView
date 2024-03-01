@@ -15,6 +15,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
         dataArr.append("MiddleExpandCollectionView")
         dataArr.append("TiltCollectionView")
+        dataArr.append("AlignCollectionViewFollowLayout")
 
         let tabView = UITableView(frame: view.bounds, style: .plain)
         tabView.delegate = self
@@ -42,6 +43,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             navigationController?.pushViewController(MiddleExpandCollectionViewViewController(), animated: true)
         } else if indexPath.row == 1 {
             navigationController?.pushViewController(TiltCollectionViewViewController(), animated: true)
+        } else if indexPath.row == 2 {
+            navigationController?.pushViewController(AlignCollectionViewController(), animated: true)
         } else {
             let stb = UIStoryboard(name: "LaunchScreen", bundle: .main)
             let ctl = stb.instantiateViewController(withIdentifier: "aaaaaa")

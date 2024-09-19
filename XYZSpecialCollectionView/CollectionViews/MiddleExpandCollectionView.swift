@@ -143,7 +143,13 @@ extension MiddleExpandCollectionView {
 
     private func startAutoScroll() {
         if let timer = autoScrollTimer, timer.isValid { return }
-        let timer = Timer.scheduledTimer(timeInterval: autoScrollTimeInterval, target: self, selector: #selector(timerFire), userInfo: nil, repeats: true)
+        let timer = Timer.scheduledTimer(withTimeInterval: autoScrollTimeInterval, repeats: true) { [weak self] ttime in
+            guard let self = self else {
+                ttime.invalidate()
+                return
+            }
+            self.timerFire()
+        }
         autoScrollTimer = timer
     }
 
@@ -152,7 +158,7 @@ extension MiddleExpandCollectionView {
         autoScrollTimer = nil
     }
 
-    @objc func timerFire() {
+    private func timerFire() {
         if colletView.isDragging || colletView.isTracking || colletView.isDecelerating { return }
         guard let cIndexPath = colletView.indexPathForItem(at: CGPoint(x: colletView.bounds.midX, y: colletView.bounds.midY)) else {
             return

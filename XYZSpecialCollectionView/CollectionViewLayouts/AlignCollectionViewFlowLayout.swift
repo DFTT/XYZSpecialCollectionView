@@ -9,7 +9,7 @@ import UIKit
 
 // 主要支持纵向滚动的.
 //  对于横向滚动的, 仅对只有一行cell场景才有效
-class AlignCollectionViewFollowLayout: UICollectionViewFlowLayout {
+class AlignCollectionViewFlowLayout: UICollectionViewFlowLayout {
     enum AlignType {
         case center
         case left

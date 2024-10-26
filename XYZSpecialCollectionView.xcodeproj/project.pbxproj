@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5B33F7C32B91CC2D0011167F /* AlignCollectionViewFollowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B33F7C22B91CC2D0011167F /* AlignCollectionViewFollowLayout.swift */; };
+		5B33F7C32B91CC2D0011167F /* AlignCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B33F7C22B91CC2D0011167F /* AlignCollectionViewFlowLayout.swift */; };
 		5B33F7C52B91CC7E0011167F /* AlignCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B33F7C42B91CC7E0011167F /* AlignCollectionViewController.swift */; };
 		5B5DA64829E8F820005A72D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5DA64729E8F820005A72D7 /* AppDelegate.swift */; };
 		5B5DA64C29E8F820005A72D7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5DA64B29E8F820005A72D7 /* ViewController.swift */; };
@@ -18,10 +18,12 @@
 		5B5DA65F29E8F888005A72D7 /* TiltCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5DA65D29E8F888005A72D7 /* TiltCollectionView.swift */; };
 		5B5DA66229E8FD51005A72D7 /* TiltCollectionViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5DA66129E8FD51005A72D7 /* TiltCollectionViewViewController.swift */; };
 		5B5DA66429E8FD5E005A72D7 /* MiddleExpandCollectionViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5DA66329E8FD5E005A72D7 /* MiddleExpandCollectionViewViewController.swift */; };
+		5B9098612CCBDE8E0022975C /* MessageCollectionFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9098602CCBDE8E0022975C /* MessageCollectionFlowLayout.swift */; };
+		5B9098632CCBE1B50022975C /* MessageCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9098622CCBE1B50022975C /* MessageCollectionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5B33F7C22B91CC2D0011167F /* AlignCollectionViewFollowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlignCollectionViewFollowLayout.swift; sourceTree = "<group>"; };
+		5B33F7C22B91CC2D0011167F /* AlignCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlignCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		5B33F7C42B91CC7E0011167F /* AlignCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlignCollectionViewController.swift; sourceTree = "<group>"; };
 		5B5DA64429E8F820005A72D7 /* XYZSpecialCollectionView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XYZSpecialCollectionView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B5DA64729E8F820005A72D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -34,6 +36,8 @@
 		5B5DA65D29E8F888005A72D7 /* TiltCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TiltCollectionView.swift; sourceTree = "<group>"; };
 		5B5DA66129E8FD51005A72D7 /* TiltCollectionViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TiltCollectionViewViewController.swift; sourceTree = "<group>"; };
 		5B5DA66329E8FD5E005A72D7 /* MiddleExpandCollectionViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiddleExpandCollectionViewViewController.swift; sourceTree = "<group>"; };
+		5B9098602CCBDE8E0022975C /* MessageCollectionFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCollectionFlowLayout.swift; sourceTree = "<group>"; };
+		5B9098622CCBE1B50022975C /* MessageCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCollectionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,7 +54,8 @@
 		5B33F7C12B91CBF80011167F /* CollectionViewLayouts */ = {
 			isa = PBXGroup;
 			children = (
-				5B33F7C22B91CC2D0011167F /* AlignCollectionViewFollowLayout.swift */,
+				5B33F7C22B91CC2D0011167F /* AlignCollectionViewFlowLayout.swift */,
+				5B9098602CCBDE8E0022975C /* MessageCollectionFlowLayout.swift */,
 			);
 			path = CollectionViewLayouts;
 			sourceTree = "<group>";
@@ -102,6 +107,7 @@
 				5B5DA66129E8FD51005A72D7 /* TiltCollectionViewViewController.swift */,
 				5B5DA66329E8FD5E005A72D7 /* MiddleExpandCollectionViewViewController.swift */,
 				5B33F7C42B91CC7E0011167F /* AlignCollectionViewController.swift */,
+				5B9098622CCBE1B50022975C /* MessageCollectionViewController.swift */,
 			);
 			path = Examples;
 			sourceTree = "<group>";
@@ -178,12 +184,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B5DA64C29E8F820005A72D7 /* ViewController.swift in Sources */,
+				5B9098612CCBDE8E0022975C /* MessageCollectionFlowLayout.swift in Sources */,
 				5B5DA64829E8F820005A72D7 /* AppDelegate.swift in Sources */,
 				5B5DA66229E8FD51005A72D7 /* TiltCollectionViewViewController.swift in Sources */,
-				5B33F7C32B91CC2D0011167F /* AlignCollectionViewFollowLayout.swift in Sources */,
+				5B33F7C32B91CC2D0011167F /* AlignCollectionViewFlowLayout.swift in Sources */,
 				5B33F7C52B91CC7E0011167F /* AlignCollectionViewController.swift in Sources */,
 				5B5DA65F29E8F888005A72D7 /* TiltCollectionView.swift in Sources */,
 				5B5DA66429E8FD5E005A72D7 /* MiddleExpandCollectionViewViewController.swift in Sources */,
+				5B9098632CCBE1B50022975C /* MessageCollectionViewController.swift in Sources */,
 				5B5DA65E29E8F888005A72D7 /* MiddleExpandCollectionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

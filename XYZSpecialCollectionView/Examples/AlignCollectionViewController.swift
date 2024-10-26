@@ -18,18 +18,18 @@ class AlignCollectionViewController: UIViewController {
         view.addSubview(collcetionView3)
 
         let rect = view.bounds
-        var rect1 = CGRect(x: 0, y: 100, width: rect.size.width, height: 150)
+        var rect1 = CGRect(x: 0, y: 100, width: rect.size.width, height: 120)
         collcetionView.frame = rect1
-        rect1.origin.y += 160
+        rect1.origin.y += 130
         collcetionView2.frame = rect1
-        rect1.origin.y += 160
+        rect1.origin.y += 130
         collcetionView3.frame = rect1
 
         shortCollectionView.insert(collcetionView4)
         shortCollectionView.insert(collcetionView5)
 
         view.addSubview(collcetionView4)
-        rect1.origin.y += 160
+        rect1.origin.y += 130
         rect1.size.height = 40
         collcetionView4.frame = rect1
 
@@ -66,7 +66,7 @@ class AlignCollectionViewController: UIViewController {
     ]
 
     private lazy var collcetionView: UICollectionView = {
-        let layout = AlignCollectionViewFollowLayout()
+        let layout = AlignCollectionViewFlowLayout()
         layout.align = .left
         layout.minimumLineSpacing = 10
         layout.minimumInteritemSpacing = 10
@@ -80,7 +80,7 @@ class AlignCollectionViewController: UIViewController {
     }()
 
     private lazy var collcetionView2: UICollectionView = {
-        let layout = AlignCollectionViewFollowLayout()
+        let layout = AlignCollectionViewFlowLayout()
         layout.align = .right
         layout.minimumLineSpacing = 10
         layout.minimumInteritemSpacing = 10
@@ -94,7 +94,7 @@ class AlignCollectionViewController: UIViewController {
     }()
 
     private lazy var collcetionView3: UICollectionView = {
-        let layout = AlignCollectionViewFollowLayout()
+        let layout = AlignCollectionViewFlowLayout()
         layout.align = .center
         layout.minimumLineSpacing = 10
         layout.minimumInteritemSpacing = 10
@@ -108,7 +108,7 @@ class AlignCollectionViewController: UIViewController {
     }()
 
     private lazy var collcetionView4: UICollectionView = {
-        let layout = AlignCollectionViewFollowLayout()
+        let layout = AlignCollectionViewFlowLayout()
         layout.align = .center
         layout.minimumInteritemSpacing = 10
         layout.scrollDirection = .horizontal
@@ -122,7 +122,7 @@ class AlignCollectionViewController: UIViewController {
     }()
 
     private lazy var collcetionView5: UICollectionView = {
-        let layout = AlignCollectionViewFollowLayout()
+        let layout = AlignCollectionViewFlowLayout()
         layout.align = .right
         layout.minimumInteritemSpacing = 10
         layout.scrollDirection = .horizontal
@@ -170,7 +170,7 @@ extension AlignCollectionViewController: UICollectionViewDelegate, UICollectionV
     }
 }
 
-class CollectionViewCell: UICollectionViewCell {
+private class CollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.addSubview(label)

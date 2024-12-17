@@ -7,6 +7,19 @@
 
 import UIKit
 
+private class DataItem {
+    let string: String
+    var size: CGSize = .zero
+
+    init(string: String) {
+        self.string = string
+    }
+
+    func saveSize(_ size: CGSize) {
+        self.size = size
+    }
+}
+
 class MessageCollectionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,11 +29,34 @@ class MessageCollectionViewController: UIViewController {
         view.addSubview(collcetionView)
 
         let rect = view.bounds
-        collcetionView.frame = CGRect(x: 0, y: 300, width: rect.size.width, height: 200)
+        collcetionView.frame = CGRect(x: 0, y: 180, width: rect.size.width, height: 450)
+
+        let tap = UITapGestureRecognizer(target: self, action: #selector(aa))
+        view.addGestureRecognizer(tap)
     }
 
-    private var dataTexts: [String] = [
-        "一",
+    @objc func aa() {
+        dataTexts.append(DataItem(string: "\(dataTexts.count + 1)"))
+        let idxp = IndexPath(row: dataTexts.count - 1, section: 0)
+
+//        collcetionView.reloadData()
+//        DispatchQueue.main.async {
+//            self.collcetionView.scrollToItem(at: idxp, at: .bottom, animated: true)
+//        }
+//
+//        return;
+
+//        UIView.performWithoutAnimation {
+        collcetionView.performBatchUpdates {
+            collcetionView.insertItems(at: [idxp])
+        } completion: { _ in
+            self.collcetionView.scrollToItem(at: idxp, at: .bottom, animated: true)
+        }
+//        }
+    }
+
+    private var dataTexts: [DataItem] = [
+        DataItem(string: "一"),
     ]
 
     private lazy var collcetionView: UICollectionView = {
@@ -43,12 +79,17 @@ extension MessageCollectionViewController: UICollectionViewDelegate, UICollectio
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CollectionViewCell
-        cell.label.text = dataTexts[indexPath.item]
+        cell.label.text = dataTexts[indexPath.item].string
         cell.label.backgroundColor = .green.withAlphaComponent(0.6)
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let item = dataTexts[indexPath.item]
+        if item.size != .zero {
+            return item.size
+        }
+
         let w = collectionView.bounds.size.width
 //        let text = dataTexts[indexPath.item]
 //        var size = (text as NSString).boundingRect(with: CGSize(width: w, height: 1000),
@@ -56,15 +97,13 @@ extension MessageCollectionViewController: UICollectionViewDelegate, UICollectio
 //                                                   context: nil).size
 //        size.width = w
 //        return size
-        return CGSize(width: w, height: 50)
+        let size = CGSize(width: w, height: CGFloat(10 + Int(arc4random()) % 100))
+        item.saveSize(size)
+        return size
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        dataTexts.append("\(dataTexts.count + 1)")
-        collectionView.reloadData()
-        DispatchQueue.main.async {
-            collectionView.scrollToItem(at: IndexPath(row: self.dataTexts.count - 1, section: 0), at: .bottom, animated: true)
-        }
+        aa()
     }
 }
 

@@ -10,8 +10,8 @@ import UIKit
 
 protocol MiddleExpandCollectionViewDelegate: AnyObject {
     func cell(for dataItem: Any, collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell
-    func cellDidClick(with index: Int, inDataArr: [Any]) -> Void
-    func cellWillDisplay(with index: Int, inDataArr: [Any]) -> Void
+    func cellDidClick(with index: Int, inDataArr: [Any])
+    func cellWillDisplay(with index: Int, inDataArr: [Any])
 }
 
 private let SC_LoopCount = 150
@@ -107,13 +107,12 @@ class MiddleExpandCollectionView: UIView {
             layout.scrollDirection = direction
             layout.itemSize = itemSize
             layout.maxScale = maxScale
-            if direction == .horizontal {
-                layout.minimumLineSpacing = itemSpace
-            } else {
-                layout.minimumInteritemSpacing = itemSpace
-            }
+            // 滚动方向上的间距 横竖都是 lineSpacing
+            layout.minimumLineSpacing = itemSpace
 
-            colletView.contentInset = UIEdgeInsets(top: 0, left: itemSpace / 2, bottom: 0, right: itemSpace / 2)
+            colletView.contentInset = direction == .horizontal
+                ? UIEdgeInsets(top: 0, left: itemSpace / 2, bottom: 0, right: itemSpace / 2)
+                : UIEdgeInsets(top: itemSpace / 2, left: 0, bottom: itemSpace / 2, right: 0)
             colletView.dataSource = self
             colletView.delegate = self
             colletView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "ididididid")
@@ -160,9 +159,8 @@ extension MiddleExpandCollectionView {
 
     private func timerFire() {
         if colletView.isDragging || colletView.isTracking || colletView.isDecelerating { return }
-        guard let cIndexPath = colletView.indexPathForItem(at: CGPoint(x: colletView.bounds.midX, y: colletView.bounds.midY)) else {
-            return
-        }
+        guard let cIndexPath = centerIndexPath() else { return }
+
         let toIndexPath: IndexPath
         if isLoop {
             toIndexPath = IndexPath(row: cIndexPath.row + 1, section: 0)
@@ -213,12 +211,20 @@ extension MiddleExpandCollectionView: UICollectionViewDelegate {
 }
 
 extension MiddleExpandCollectionView {
-    private func tryFixIndex() {
-        guard isLoop else { return }
+    private func centerIndexPath() -> IndexPath? {
+        let mid = CGPoint(x: colletView.bounds.midX, y: colletView.bounds.midY)
+        if let indexPath = colletView.indexPathForItem(at: mid) { return indexPath }
+        // 中点落在间隙(滚动动画被打断)时，取中心离中点最近的 item。用 layout 而非 visibleCells：刚 reloadData 时 visibleCells 还是空的
+        let atts = colletView.collectionViewLayout.layoutAttributesForElements(in: colletView.bounds) ?? []
+        return atts.min { hypot($0.center.x - mid.x, $0.center.y - mid.y) < hypot($1.center.x - mid.x, $1.center.y - mid.y) }?.indexPath
+    }
 
-        guard let cIndexPath = colletView.indexPathForItem(at: CGPoint(x: colletView.bounds.midX, y: colletView.bounds.midY)) else {
-            return
-        }
+    private func tryFixIndex() {
+        guard isLoop, dataArr.isEmpty == false else { return }
+
+        // 数据变少后 offset 可能越界、一个 item 都看不到，按第 0 个处理拉回中间
+        let cIndexPath = centerIndexPath() ?? IndexPath(row: 0, section: 0)
+
         let maxCount = colletView.numberOfItems(inSection: 0)
         // 还剩一个循环则为临界值
         if maxCount - cIndexPath.row <= dataArr.count || cIndexPath.row <= dataArr.count {
@@ -260,11 +266,12 @@ private class ScalCollectionViewLayout: UICollectionViewFlowLayout {
 
     /// 3. 根据特定矩形区域(一般是可视区域) 调整可视区域内的cellLayoutAttribute
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-        guard let resArr = super.layoutAttributesForElements(in: rect) else { return nil }
+        // 必须 copy, 直接改 super 缓存的属性会触发 cached frame mismatch
+        guard let resArr = super.layoutAttributesForElements(in: rect)?.map({ $0.copy() as! UICollectionViewLayoutAttributes }) else { return nil }
 
         let collectionView = self.collectionView!
 
-        let animateDistance = (scrollDirection == .horizontal ? itemSize.width + minimumLineSpacing : itemSize.height + minimumInteritemSpacing)
+        let animateDistance = (scrollDirection == .horizontal ? itemSize.width : itemSize.height) + minimumLineSpacing
 
         let halfBounceValue = (scrollDirection == .horizontal ? collectionView.bounds.size.width : collectionView.bounds.size.height) / 2
 
@@ -280,6 +287,8 @@ private class ScalCollectionViewLayout: UICollectionViewFlowLayout {
             } else {
                 subAtt.transform = .identity
             }
+            // 离中心越近(越大) 越要显示在上层
+            subAtt.zIndex = -Int(targetDistance)
         }
         return resArr
     }
